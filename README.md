@@ -168,6 +168,7 @@ print(df_finale)
 weighted avg       0.83      0.78      0.80      3177
  samples avg       0.86      0.84      0.83      3177
 
+
 Для модели новостей на английском языке:  
 
               precision    recall  f1-score   support
@@ -183,6 +184,7 @@ weighted avg       0.83      0.78      0.80      3177
    macro avg       0.69      0.69      0.68      1536
 weighted avg       0.78      0.80      0.79      1536
  samples avg       0.83      0.84      0.81      1536
+ 
 
 ## Ожидаемые выгоды
 
