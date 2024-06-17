@@ -11,7 +11,10 @@
 
 ## Установка модели
 
-Для классификации новостей на русском языке:
+Ссылка на модель для классификации новостей на русском: https://huggingface.co/Anzovi/distilBERT-news-ru  
+Ссылка на модель для классификации новостей на английском: https://huggingface.co/Anzovi/distilBERT-news  
+
+Для классификации новостей только на русском языке:
 
 ```python
 # Load model directly
@@ -19,7 +22,7 @@ from transformers import DistilBERTClassRus
 model = DistilBERTClassRus.from_pretrained("Anzovi/distilBERT-news-ru")
 ```
 
-Для классификации новостей на английском языке:
+Для классификации новостей только на английском языке:
 
 ```python
 # Load model directly
@@ -27,7 +30,7 @@ from transformers import DistilBERTClass
 model = DistilBERTClass.from_pretrained("Anzovi/distilBERT-news")
 ```
 
-Или клонирование репозитория для использования с локальной машины:
+Или клонирование репозитория для использования с пайплайном (и для английского и для русского):
 
 ```python
 import classification
@@ -35,23 +38,34 @@ import classification
 
 ## Использование
 
-Чтобы классифицировать новостные статьи, выполните следующие шаги (пример для новостей на русском):
+Чтобы классифицировать новостные статьи есть два способа:
+### Напрямую через обращение к модели  
 
 1. Импортируйте необходимые модули и загрузите модель:
 
 ```python
-from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
-from torch.utils.data import DataLoader
+from distilBERTModule import DistilBERTClassRus # Локально
+# from transformers import DistilBERTClass # Из облака
+from transformers import AutoTokenizer
 
-tokenizer = DistilBertTokenizer.from_pretrained('Anzovi/distilBERT-news')
-model = DistilBertForSequenceClassification.from_pretrained('Anzovi/distilBERT-news')
+device = "cuda"
+
+# Локально
+tokenizer = AutoTokenizer.from_pretrained('models_rus')
+model = DistilBERTClassRus.from_pretrained('models_rus')
+
+# Или из облака
+tokenizer = AutoTokenizer.from_pretrained('Anzovi/distilBERT-news-ru')
+model = DistilBERTClassRus.from_pretrained('Anzovi/distilBERT-news-ru')
+
+model.to(device)
 ```
 
 2. Подготовьте данные для классификации:
 
 ```python
-texts = ["Здесь ваш текст новости..."]
-inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
+text = "Здесь ваш текст новости..."
+encoded_input = tokenizer(text, return_tensors='pt', return_token_type_ids=True).to(device)
 ```
 
 3. Классифицируйте тексты:
@@ -60,19 +74,31 @@ inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
 import torch
 
 with torch.no_grad():
-    logits = model(**inputs).logits
+    outputs = model(**encoded_input)
 ```
 
-4. Преобразуйте логиты в вероятности и определите метки:
+4. Преобразуйте вероятностные значения классов в категории:
 
 ```python
-from torch.nn.functional import softmax
+fin_outputs = []
+fin_outputs.extend(((torch.sigmoid(outputs).cpu().detach().numpy() >= 0.5).astype(int)).tolist())
 
-probabilities = softmax(logits, dim=1)
-labels = (probabilities > 0.5).nonzero(as_tuple=True)
+classes_names = ['Внешняя торговля',
+                   'Инвестиции',
+                   'Пункты пропуска',
+                   'Санкции',
+                   'Совместные проекты и программы',
+                   'Специальные отношения, не классифицированные по типу']
+
+import pandas as pd
+
+labels = pd.DataFrame(data=fin_outputs, columns=classes_names)
+
+print(labels)
 ```
 
-Или локальное использование:
+### Использование заготовленного пайплаина
+Для *.csv файла:
 ```python
 import classification
 import pandas as pd
@@ -82,6 +108,19 @@ text_column = 'text'
 
 df_finale = classification.classify(df, text_column)
 df_finale.to_csv("Out.csv")
+```
+
+Для одного текста:
+```python
+import classification
+import pandas as pd
+
+text = "Здесь ваш текст новости..."
+df = pd.DataFrame(data=[text], columns=['text'])
+text_column = 'text'
+
+df_finale = classification.classify(df, text_column)
+print(df_finale)
 ```
 
 ## Конфигурация
