@@ -21,7 +21,7 @@
 
 Блок-схема с ключевыми этапами решения задачи:  
 <p align="center">
-  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/schema.png"/>
+  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/schema.png"/>
 </p>
 
 
@@ -154,35 +154,16 @@ print(df_finale)
 
 Для модели новостей на русском языке:  
 
-              precision    recall  f1-score   support
-
-           0       0.91      0.88      0.90      1644
-           1       0.85      0.71      0.77       270
-           2       0.35      0.67      0.46        33
-           3       0.77      0.73      0.75       329
-           4       0.73      0.65      0.69       464
-           5       0.66      0.65      0.65       437
-   micro avg       0.82      0.78      0.80      3177
-   macro avg       0.71      0.71      0.70      3177
-weighted avg       0.83      0.78      0.80      3177
- samples avg       0.86      0.84      0.83      3177
+<p align="center">
+  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Rus.png"/>
+</p>
 
 
 Для модели новостей на английском языке:  
 
-              precision    recall  f1-score   support
-
-           0       0.85      0.89      0.87       659
-           1       0.76      0.84      0.80       235
-           2       0.35      0.47      0.40        15
-           3       0.74      0.52      0.61        48
-           4       0.75      0.73      0.74       313
-           5       0.69      0.69      0.69       266
-   micro avg       0.78      0.80      0.79      1536
-   macro avg       0.69      0.69      0.68      1536
-weighted avg       0.78      0.80      0.79      1536
- samples avg       0.83      0.84      0.81      1536
- 
+<p align="center">
+  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Eng.png"/>
+</p>
 
 ## Ожидаемые выгоды
 
