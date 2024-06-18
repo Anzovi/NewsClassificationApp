@@ -33,7 +33,6 @@
 Структура файлов:
 
 ```bash tree
-├── node_modules (.gitignore)
 ├── model_folder_1
 │   ├── config.json
 │   ├── model.safetensors
