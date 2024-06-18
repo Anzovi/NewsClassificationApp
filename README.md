@@ -30,6 +30,26 @@
 Ссылка на модель для классификации новостей на русском: https://huggingface.co/Anzovi/distilBERT-news-ru  
 Ссылка на модель для классификации новостей на английском: https://huggingface.co/Anzovi/distilBERT-news  
 
+Структура файлов:
+├── node_modules (.gitignore)
+├── model_folder_1
+│   ├── config.json
+│   ├── model.safetensors
+│   ├── special_tokens_map.json
+│   ├── tokenizer_config.json
+│   └── vocab.txt
+├── model_folder_2
+│   ├── config.json
+│   ├── model.safetensors
+│   ├── special_tokens_map.json
+│   ├── tokenizer_config.json
+│   └── vocab.txt
+├── Data_processing_eng.py
+├── Data_processing_rus.py
+├── data_splitter.py
+├── *.py
+└── ...
+
 Для классификации новостей только на русском языке:
 
 ```python
@@ -58,7 +78,7 @@ import classification
 
 ### Напрямую через обращение к модели  
 
-1. Импортируйте необходимые модули и загрузите модель:
+1. Импортирование необходимых модулей и загрузка модели:
 
 ```python
 from distilBERTModule import DistilBERTClassRus # Локально
@@ -78,14 +98,14 @@ model = DistilBERTClassRus.from_pretrained('Anzovi/distilBERT-news-ru')
 model.to(device)
 ```
 
-2. Подготовьте данные для классификации:
+2. Подготовка данных для классификации:
 
 ```python
 text = "Здесь ваш текст новости..."
 encoded_input = tokenizer(text, return_tensors='pt', return_token_type_ids=True).to(device)
 ```
 
-3. Классифицируйте тексты:
+3. Классификация текстов:
 
 ```python
 import torch
@@ -94,7 +114,7 @@ with torch.no_grad():
     outputs = model(**encoded_input)
 ```
 
-4. Преобразуйте вероятностные значения классов в категории:
+4. Преобразование вероятностных значений классов в категории:
 
 ```python
 fin_outputs = []
