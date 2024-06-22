@@ -29,15 +29,15 @@
 ## Разведочный анализ данных
 Распределение классов: слева для новостей на английском, справа для новостей на русском.
 <p float="left">  
-  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Eng_classes.png"  />
-  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Rus_classes.png"  /> 
+  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Eng_classes.png" width="40%" />
+  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Rus_classes.png" width="40%" /> 
 </p> 
 Как видно классы не очень хорошо сбалансированы относительно друг друга.  
 
 Среднее количество слов в одной новости: слева для новостей на английском - среднее 2018, справа для новостей на русском - среднее 1421.
 <p float="left">  
-  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Eng_words_distribution_2018.png"  />
-  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Rus_words_distribution_1421.png" /> 
+  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Eng_words_distribution_2018.png" width="40%" />
+  <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Rus_words_distribution_1421.png" width="40%" /> 
 </p> 
 Среднее количество слов в одной новости на русском в среднем на 600 меньше чем в английском.  
 
