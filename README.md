@@ -26,7 +26,7 @@
   <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/schema.png"/>
 </p>
 
-## Разведочный анализ данных
+## Анализ данных
 Распределение классов: слева для новостей на английском, справа для новостей на русском.
 <p float="left">  
   <img src="https://github.com/Anzovi/NewsClassificationApp/blob/main/Pics/Eng_classes.png" width="40%" />
